@@ -1,8 +1,24 @@
 //rfce
+import axios from 'axios'
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import './style.css'
 
 function Home() {
+    const [data, setData] = useState({
+        celcius: 10,
+        name: 'London',
+        humidity: 10,
+        speed: 2
+    })
+    useEffect(()=> {
+        const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=c4ea3c9df84d24e84b836078997dd14d&units=metric';
+        axios.get(apiUrl)
+        .then( res => console.log(res.data))
+        .catch( err => console.log(err));
+    }, [])
+
   return (
     <div className='container'>
         <div className="weather">
@@ -36,4 +52,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;
