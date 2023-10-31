@@ -13,9 +13,12 @@ function Home() {
         speed: 2
     })
     useEffect(()=> {
-        const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=c4ea3c9df84d24e84b836078997dd14d&units=metric';
+        const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Chicago&appid=c4ea3c9df84d24e84b836078997dd14d&units=metric';
         axios.get(apiUrl)
-        .then( res => console.log(res.data))
+        .then( res => {
+            setData({...data, celcius: res.data.main.temp, name: res.data.name, 
+                              humidity: res.data.main.humidity, speed: res.data.wind.speed })
+        })
         .catch( err => console.log(err));
     }, [])
 
@@ -28,20 +31,20 @@ function Home() {
             </div>
             <div className="winfo">
                 <img src="/Images/clouds.png" alt="" />
-                <h1>4°c</h1>
-                <h2>Chicago</h2>
+                <h1>{Math.round(data.celcius)}°c</h1>
+                <h2>{data.name}</h2>
                 <div className="details">
                     <div className="col">
                         <img src="/Images/humidity.png" alt="" />
                         <div className='humidity'>
-                            <p>20%</p>
+                            <p>{Math.round(data.humidity)}%</p>
                             <p><span>Humidity</span></p>
                         </div>
                     </div>
                     <div className="col">
                     <img src="/Images/wind.png" alt="" />
                         <div className='wind'>
-                            <p>3 Km/h</p>
+                            <p>{Math.round(data.speed)} Km/h</p>
                             <p><span>Wind</span></p>
                         </div>
                     </div>
