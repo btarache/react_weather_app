@@ -44,6 +44,9 @@
     margin-top: 20px;
     width: 170px;
 }
+.winfo img {
+    max-width: 200px !important;
+}
 .winfo h1 {
     font-size: 70px;
     font-weight: 500;
@@ -79,4 +82,9 @@
 .humidity p span, .wind p span {
     font-size:  15px;
     color: rgba(255, 255, 255, 0.8)
+}
+.error {
+    color: rgb(235, 169, 169);
+    text-align: left;
+    margin-left: 10px;
 }
