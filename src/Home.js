@@ -12,13 +12,19 @@ function Home() {
         humidity: 10,
         speed: 2,
         country: 'Tin',
-        desc: 'Clear sky',
+        description: 'Clear sky',
         feels: 1,
+        temp_min: 0,
+        temp_max: 1,
+        sunrise: 0,
+        sunset: 1,
+        id: 0,
         image: 'Images/clouds.png'
-    })
+    });
 
     const [name, setName] = useState('');
     const [error, setError] = useState('');
+    
     
 
     //useEffect(()=> {
@@ -59,9 +65,10 @@ function Home() {
                 console.log(res.data);
                 setData({...data, celcius: res.data.main.temp, name: res.data.name, 
                                   humidity: res.data.main.humidity, speed: res.data.wind.speed,
-                                  country: res.data.sys.country, desc: res.data.weather.description,
-                                  feels: res.data.main.feels_like,
-                                  image: imagePath })
+                                  country: res.data.sys.country, description: res.data.weather.description,
+                                  feels: res.data.main.feels_like, temp_min: res.data.main.temp_min,
+                                  temp_max: res.data.main.temp_max, sunrise: res.data.sys.sunrise, sunset: res.data.sys.sunset,
+                                  id: res.data.weather.id, image: imagePath })
                             setError('');
             })
             .catch( err => {
@@ -89,9 +96,21 @@ function Home() {
 
             <div className="winfo">
                 <img src={data.image} alt=""  />
+                <h4>Desc: {data.description}</h4>
+                <h4>ID: {data.id}</h4>
                 <h1>{Math.round(data.celcius)}°c</h1>
-                <h4>{data.desc}</h4>
-                <h2>{data.name}, {data.country}</h2>
+                
+                <h2>{data.name}, <span class="factor">{data.country}</span></h2>
+                <div className="minmax">
+                    <h3>Low: {Math.round(data.temp_min)}</h3>
+                    <h3>Hi: {Math.round(data.temp_max)}</h3>
+                </div>
+
+                <div className="minmax">
+                    <h3>Sunrise: {Math.round(data.sunrise)}</h3>
+                    <h3>Sunset: {Math.round(data.sunset)}</h3>
+                </div>
+
                 
                 <h3>Feels Like: {Math.round(data.feels)}</h3>
                 

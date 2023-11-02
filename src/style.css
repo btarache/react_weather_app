@@ -73,6 +73,17 @@
     width: 45px;
     margin-right: 10px;
 }
+h2 span.factor {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #fff;
+}
+.minmax {
+    border-top: thin solid #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .humidity, .wind {
     font-size:  20px;
 }
